@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exam PDFs Portal</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>📘 Exam Preparation Hub</h1>
+    <button id="creator-btn">About Creator</button>
+  </header>
+
+  <div id="timer-warning">
+    PDFs will unlock at <strong>10:00 PM</strong> on exam eve. Stay tuned!
+  </div>
+
+  <div class="pdf-grid">
+
+    <div class="pdf-card" data-src="pdfs/BDA.pdf">
+      <h2>Big Data Analysis</h2>
+      <div class="pdf-frame">Locked</div>
+    </div>
+
+    <div class="pdf-card" data-src="pdfs/daa.pdf">
+      <h2>Design and Analysis of Algorithm</h2>
+      <div class="pdf-frame">Locked</div>
+    </div>
+
+    <div class="pdf-card" data-src="pdfs/java.pdf">
+      <h2>Advanced Java Programming</h2>
+      <div class="pdf-frame">Locked</div>
+    </div>
+
+    <div class="pdf-card" data-src="pdfs/dbms.pdf">
+      <h2>PHP & MySQL</h2>
+      <div class="pdf-frame">Locked</div>
+    </div>
+
+    <div class="pdf-card" data-src="pdfs/marketing.pdf">
+      <h2>Business Intelligence</h2>
+      <div class="pdf-frame">Locked</div>
+    </div>
+
+    <div class="pdf-card" data-src="pdfs/negotiation.pdf">
+      <h2>Negotiation & Persuasion Skills</h2>
+      <div class="pdf-frame">Locked</div>
+    </div>
+
+    <div class="pdf-card" data-src="pdfs/mooc.pdf">
+      <h2>MOOCs</h2>
+      <div class="pdf-frame">Locked</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 ExamPrep | Made with ❤️ and a hint of mystery.</p>
+  </footer>
+
+  <!-- Disclaimer Modal -->
+  <div id="disclaimer-modal">
+    <div class="modal-content">
+      <p>⚠️ These PDFs are for revision and will be uploaded on exam eve. Do you agree?</p>
+      <button id="accept-btn">Yes, Show PDFs</button>
+    </div>
+  </div>
+
+  <!-- About Creator Modal -->
+  <div id="creator-modal">
+    <div class="modal-content">
+      <p>👤 Crafted by someone who believes in quiet hustle. <br> The one who codes silently... and passes loudly 😉</p>
+      <button id="close-creator">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const pdfCards = document.querySelectorAll('.pdf-card');
+    const modal = document.getElementById('disclaimer-modal');
+    const acceptBtn = document.getElementById('accept-btn');
+    const creatorBtn = document.getElementById('creator-btn');
+    const creatorModal = document.getElementById('creator-modal');
+    const closeCreator = document.getElementById('close-creator');
+
+    const unlockTimes = {
+      "BDA.pdf": new Date("2025-04-07T22:00:00"),
+      "daa.pdf": new Date("2025-04-09T22:00:00"),
+      "java.pdf": new Date("2025-04-14T22:00:00"),
+      "dbms.pdf": new Date("2025-04-16T22:00:00"),
+      "marketing.pdf": new Date("2025-04-18T22:00:00"),
+      "negotiation.pdf": new Date("2025-04-21T22:00:00"),
+      "mooc.pdf": new Date("2025-04-27T22:00:00")
+    };
+
+    const loadPDF = (card) => {
+      const frame = card.querySelector('.pdf-frame');
+      const pdfSrc = card.getAttribute('data-src');
+      frame.innerHTML = `<iframe src="${pdfSrc}" frameborder="0"></iframe>`;
+    };
+
+    const enableUnlockedPDFs = () => {
+      const now = new Date();
+
+      pdfCards.forEach(card => {
+        const src = card.getAttribute('data-src').split('/').pop();
+        const unlockTime = unlockTimes[src];
+        const frame = card.querySelector('.pdf-frame');
+
+        if (now >= unlockTime) {
+          loadPDF(card);
+        } else {
+          frame.innerHTML = `⏳ Unlocks at 10:00 PM on ${unlockTime.toDateString()}`;
+        }
+      });
+    };
+
+    const disclaimerShown = sessionStorage.getItem('disclaimerAccepted');
+
+    if (!disclaimerShown) {
+      modal.style.display = 'flex';
+    } else {
+      enableUnlockedPDFs();
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      sessionStorage.setItem('disclaimerAccepted', 'true');
+      enableUnlockedPDFs();
+    });
+
+    creatorBtn.addEventListener('click', () => {
+      creatorModal.style.display = 'flex';
+    });
+
+    closeCreator.addEventListener('click', () => {
+      creatorModal.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

@@ -142,16 +142,26 @@
   }
 
 .notice {
-  background-color: #fff3cd;
-  color: #856404;
-  padding: 15px;
+  background-color: #ffe5e5;
+  color: #b30000;
+  padding: 20px;
   margin: 20px auto;
   width: 90%;
-  max-width: 800px;
-  border: 1px solid #ffeeba;
-  border-radius: 8px;
-  font-weight: 500;
+  max-width: 900px;
+  border: 2px solid #b30000;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
   text-align: center;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  animation: flash 1s infinite alternate;
 }
 
- 
+@keyframes flash {
+  from {
+    background-color: #ffe5e5;
+  }
+  to {
+    background-color: #ffcccc;
+  }
+}

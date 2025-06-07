@@ -31,6 +31,22 @@
     <div class="pdf-card" data-src="pages/negotiation.html"><h2>Negotiation & Persuasion Skills</h2><div class="pdf-frame">Locked</div></div>
     <div class="pdf-card" data-src="pages/mooc.html"><h2>MOOC: Employment Communication A Lab based course</h2><div class="pdf-frame">Locked</div></div>
   </div> -->
+<div class="notice">
+  You are being redirected to another website in <span id="countdown">3</span> seconds...
+</div>
+
+<script>
+  let seconds = 3;
+  const countdown = document.getElementById('countdown');
+  const timer = setInterval(() => {
+    seconds--;
+    if (seconds <= 0) {
+      clearInterval(timer);
+      window.location.href = "https://example.com"; // Replace with your target URL
+    }
+    countdown.textContent = seconds;
+  }, 1000);
+</script>
 
   <footer>
     <p>© 2025 ExamPrep | Made with ❤️ and a hint of mystery.</p>

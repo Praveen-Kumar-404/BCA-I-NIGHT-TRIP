@@ -79,7 +79,3 @@ For any suggestions or improvements, feel free to open an issue or PR!
 """
 
 # Save the content to a README.md file
-with open("/mnt/data/README.md", "w") as f:
-    f.write(readme_content)
-
-"/mnt/data/README.md"

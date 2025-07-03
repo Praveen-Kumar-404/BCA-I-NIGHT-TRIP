@@ -1,6 +1,4 @@
-# Let's write the final README content to a file and save it for the user to download.
-
-readme_content = """# 🎓 BCA Exam Prep 📚✨
+# 🎓 BCA Exam Prep 📚✨
 
 Welcome to **BCA Exam Prep** — a simple yet powerful collection of study notes, previous year papers, and resources specially curated for BCA (Bachelor of Computer Applications) students like you!  
 
